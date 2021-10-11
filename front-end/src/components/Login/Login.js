@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <>
             <Container class="mt-5">
-                <h1 className="title">Admin Login</h1>
+                <h1 className="title">Administrador Login</h1>
                 <Row className="mt-5">
                     <Col
                         lg={5}
