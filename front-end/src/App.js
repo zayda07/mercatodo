@@ -1,11 +1,18 @@
 import "./App.css";
-import { Login } from "./components/Login/Login";
+import { Listar } from "./components/Listar/Listar";
+// import { Editar } from "./components/Editar/Editar";
+// import { Agregar } from "./components/Agregar/Agregar";
+// import { Login } from "./components/Login/Login";
+
 
 function App() {
     return (
-        <div className="background">
-            <Login />
-        </div>
+        <>
+            {/* <Login /> */}
+            {/* <Agregar /> */}
+            {/* <Editar /> */}
+            <Listar />
+        </>
     );
 }
 
