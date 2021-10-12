@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav } from "../Nav/Nav";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+import * as MercatodoServer from '../MercatodoServer'
 // import styles from './Agregar.module.css'
 
 export const Agregar = () => {
+  const initialState ={name: "",proveedor:"",cantidad:0,date:"", descripcion:"",categoria:"" }
+  const [product, setProduct] = useState(initialState)
+  const handleInputChange = (e) =>{
+    setProduct({...product,[e.target.name]:e.target.value});
+  }
+
+  const history = useHistory();
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    try {
+      let res;
+      res= await MercatodoServer.registerProduct(product);
+      const data = await res.json();
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(product);
+    history.push("/products");
+  }
+
   return (
     <>
       <Nav />
@@ -13,7 +36,7 @@ export const Agregar = () => {
         </p>
         <div class="row d-flex justify-content-center mt-4">
           <div class="col-sm-6">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div class="mb-2">
                 <label class="form-label">Nombre del producto</label>
                 <input
@@ -23,6 +46,8 @@ export const Agregar = () => {
                   pattern="[A-Za-z0-9]+"
                   title="No puedes añadir caracteres especiales"
                   required
+                  value={product.name}
+                  onChange={handleInputChange}
                 />
               </div>
               <div class="mb-2">
@@ -34,6 +59,8 @@ export const Agregar = () => {
                   pattern="[A-Za-z0-9]+"
                   title="No puedes añadir caracteres especiales"
                   required
+                  value={product.proveedor}
+                  onChange={handleInputChange}
                 />
               </div>
               <div class="mb-2">
@@ -45,6 +72,8 @@ export const Agregar = () => {
                   pattern="/^([0-9])*$/"
                   title="Dato no valido"
                   required
+                  value={product.cantidad}
+                  onChange={handleInputChange}
                 />
               </div>
               <div class="mb-2">
@@ -52,9 +81,11 @@ export const Agregar = () => {
                 <input
                   type="datetime-local"
                   class="form-control"
-                  name="year"
+                  name="date"
                   title="Dato no valido"
                   required
+                  value={product.date}
+                  onChange={handleInputChange}
                 />
               </div>
               <div class="mb-2">
@@ -65,11 +96,13 @@ export const Agregar = () => {
                   maxLength="40"
                   name="descripcion"
                   required
+                  value={product.descripcion}
+                  onChange={handleInputChange}
                 />
               </div>
               <div class="mb-4">
                 <label class="form-label">Categoria</label>
-                <select class="form-control">
+                <select class="form-control" name="categoria" onChange={handleInputChange} value={product.categoria}>
                   <option value="1">Cárnicos</option>
                   <option value="2">Lácteos</option>
                   <option value="3">Embutidos</option>
