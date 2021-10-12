@@ -1,13 +1,18 @@
 import React from "react";
 import { Nav } from "../Nav/Nav";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 // import styles from './Agregar.module.css'
 
 export const Editar = () => {
+
+  const { id } = useParams();
+  console.log(id)
   return (
     <>
       <Nav />
-      <div class="container mt-5">
+      <div class="container mt-5 mb-5">
         <p class="d-flex justify-content-center font-weight-bold h4">
           Editar Producto
         </p>
@@ -83,8 +88,12 @@ export const Editar = () => {
                   <option value="11">Aseo personal</option>
                 </select>
               </div>
-              <button class="btn btn-primary">Editar</button>
+              <Link to="/products">
+                <button type="submit" class="btn btn-primary">Editar</button>
+              </Link>
+              <Link to="/products">
               <button class="btn btn-danger ml-3">Cancelar</button>
+              </Link>
             </form>
           </div>
         </div>

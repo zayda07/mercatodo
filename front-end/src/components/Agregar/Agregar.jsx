@@ -1,13 +1,13 @@
 import React from "react";
 import { Nav } from "../Nav/Nav";
-
+import { Link } from "react-router-dom";
 // import styles from './Agregar.module.css'
 
 export const Agregar = () => {
   return (
     <>
       <Nav />
-      <div class="container mt-5">
+      <div class="container mt-5 mb-5">
         <p class="d-flex justify-content-center font-weight-bold h4">
           Agregar Producto
         </p>
@@ -84,7 +84,9 @@ export const Agregar = () => {
                 </select>
               </div>
               <button class="btn btn-primary">Agregar</button>
-              <button class="btn btn-danger ml-3">Cancelar</button>
+              <Link to="/products">
+                <button class="btn btn-danger ml-3">Cancelar</button>
+              </Link>
             </form>
           </div>
         </div>

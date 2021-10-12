@@ -28,9 +28,11 @@ export const Login = () => {
               <BiLockAlt size="20" /> Contraseña
             </label>
           </div>
-          <button type="submit" className={styles.btnSignIn}>
-            Iniciar Sesión
-          </button>
+          
+            <button type="submit" className={styles.btnSignIn}>
+              Iniciar Sesión
+            </button>
+          
         </form>
       </div>
     </div>
