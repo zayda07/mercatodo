@@ -57,5 +57,3 @@ class ProductsView(View):
     else:
       data = {'message':"Producto no encontrado..."}
     return JsonResponse(data)      
-
-  
