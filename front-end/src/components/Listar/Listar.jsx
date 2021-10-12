@@ -4,6 +4,7 @@ import { Nav } from "../Nav/Nav";
 import { BiPlus } from "react-icons/bi";
 import { BiTrash } from "react-icons/bi";
 import { BiPencil } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 export const Listar = () => {
   return (
@@ -11,9 +12,11 @@ export const Listar = () => {
       <Nav />
       <div class="container mt-5">
         <p class="mt-4 font-weight-bold h4 mb-4">Lista de Productos</p>
+        <Link to="/add">
         <button routerLink="/add" type="button" class="btn btn-add mb-3">
           Agregar <BiPlus />
         </button>
+        </Link>
 
         <div class="table-responsive mt-4">
           <table class="table">
@@ -40,9 +43,11 @@ export const Listar = () => {
                 <td data-label="Descripción">Producto nuevo</td>
                 <td data-label="Categoria">Aseo</td>
                 <td>
-                  <button type="button" class="btn btn-edit">
-                    <BiPencil />
-                  </button>
+                  <Link to="/edit/1">
+                    <button type="button" class="btn btn-edit">
+                      <BiPencil />
+                    </button>
+                  </Link>
                 </td>
                 <td>
                   <button type="button" class="btn btn-danger">

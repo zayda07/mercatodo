@@ -6,6 +6,10 @@
   background-color: #0274BC;
   color: white;
 }
+.btn-add:hover, .btn-edit:hover{
+  color: white;
+  opacity: 0.7;
+}
 @media (max-width: 770px) {
     .table thead {
       display: none;
