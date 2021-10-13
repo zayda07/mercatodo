@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import * as MercatodoServer from "../MercatodoServer";
 import "./Listar.css";
 import { Nav } from "../Nav/Nav";
 import { BiPlus } from "react-icons/bi";
@@ -6,15 +7,14 @@ import { BiTrash } from "react-icons/bi";
 import { BiPencil } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-import * as ProductServer from "../ProductServer";
-
 export const Listar = () => {
     const [products, setProducts] = useState([]);
 
     const listProducts = async () => {
         try {
-            const res = await ProductServer.listProducts();
+            const res = await MercatodoServer.listProducts();
             const data = await res.json();
+            console.log(data);
             setProducts(data.products);
         } catch (error) {
             console.log(error);
@@ -56,37 +56,47 @@ export const Listar = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td data-label="ID">001</td>
-                                <td data-label="Nombre del producto">
-                                    Colgate
-                                </td>
-                                <td data-label="Proveedor">003</td>
-                                <td data-label="Cantidad">100</td>
-                                <td data-label="Fecha llegada">
-                                    12/12/2021 12:00
-                                </td>
-                                <td data-label="Descripción">Producto nuevo</td>
-                                <td data-label="Categoria">Aseo</td>
-                                <td>
-                                    <Link to="/edit/1">
+                            {products.map((product) => (
+                                <tr key={product.id}>
+                                    <td data-label="ID">{product.id}</td>
+                                    <td data-label="Nombre del producto">
+                                        {product.pro_name}
+                                    </td>
+                                    <td data-label="Proveedor">
+                                        {product.pro_provider}
+                                    </td>
+                                    <td data-label="Cantidad">
+                                        {product.pro_existences}
+                                    </td>
+                                    <td data-label="Fecha llegada">
+                                        {product.pro_date}
+                                    </td>
+                                    <td data-label="Descripción">
+                                        {product.pro_description}
+                                    </td>
+                                    <td data-label="Categoria">
+                                        {product.pro_category}
+                                    </td>
+                                    <td>
+                                        <Link to={"/edit/" + product.id}>
+                                            <button
+                                                type="button"
+                                                class="btn btn-edit"
+                                            >
+                                                <BiPencil />
+                                            </button>
+                                        </Link>
+                                    </td>
+                                    <td>
                                         <button
                                             type="button"
-                                            class="btn btn-edit"
+                                            class="btn btn-danger"
                                         >
-                                            <BiPencil />
+                                            <BiTrash />
                                         </button>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger"
-                                    >
-                                        <BiTrash />
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
