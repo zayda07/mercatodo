@@ -80,7 +80,7 @@ DATABASES = {
         'HOST':'localhost',
         'PORT':'3306',
         'USER':'root',
-        'PASSWORD':'tupassword',
+        'PASSWORD':'carolina',
         'NAME':'mercatodo_db',
         'OPTIONS': {'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"}
     }

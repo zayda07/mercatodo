@@ -28,6 +28,7 @@ class ProductsView(View):
         data = {'message':"Productos no encontrados..."}
       return JsonResponse(data) 
   def post(self,request):
+    ''' lo trae como diccionario de py '''
     jd = json.loads(request.body)
     Products.objects.create(pro_name=jd['pro_name'], pro_provider=jd['pro_provider'],pro_existences=jd['pro_existences'],pro_date=jd['pro_date'],pro_description=jd['pro_description'], pro_category=jd['pro_category'])
     data = {'message':"Success"}
