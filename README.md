@@ -9,3 +9,5 @@ programate
 proyecto django y react
 
 pull
+
+otro push

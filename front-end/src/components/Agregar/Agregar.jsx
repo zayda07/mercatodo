@@ -43,7 +43,6 @@ export const Agregar = () => {
                   type="text"
                   class="form-control"
                   name="name"
-                  pattern="[A-Za-z0-9]+"
                   title="No puedes añadir caracteres especiales"
                   required
                   value={product.name}
@@ -56,7 +55,6 @@ export const Agregar = () => {
                   type="text"
                   class="form-control"
                   name="proveedor"
-                  pattern="[A-Za-z0-9]+"
                   title="No puedes añadir caracteres especiales"
                   required
                   value={product.proveedor}
