@@ -1,39 +1,95 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Nav } from "../Nav/Nav";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
-import * as MercatodoServer from '../MercatodoServer'
+import { useHistory, useParams } from "react-router";
+import * as MercatodoServer from "../MercatodoServer";
+
 // import styles from './Agregar.module.css'
 
 export const Agregar = () => {
-  const initialState ={name: "",proveedor:"",cantidad:0,date:"", descripcion:"",categoria:"" }
-  const [product, setProduct] = useState(initialState)
-  const handleInputChange = (e) =>{
-    setProduct({...product,[e.target.name]:e.target.value});
-  }
+  const initialState = {
+    name: "",
+    proveedor: "",
+    cantidad: 0,
+    date: "",
+    descripcion: "",
+    categoria: "",
+  };
+  const [product, setProduct] = useState(initialState);
+  const handleInputChange = (e) => {
+    setProduct({ ...product, [e.target.name]: e.target.value });
+  };
 
   const history = useHistory();
-  const handleSubmit = async (e) =>{
+  const { id } = useParams();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let res;
-      res= await MercatodoServer.registerProduct(product);
-      const data = await res.json();
-      console.log(data)
+      if (!id) {
+        res = await MercatodoServer.registerProduct(product);
+        const data = await res.json();
+        if (data.message === "Sucesss") {
+          setProduct(initialState);
+        } 
+      } else {
+        await MercatodoServer.updateProduct(id,product)
+      }
+      history.push("/products");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    console.log(product);
-    history.push("/products");
-  }
+  };
+
+  const getProduct = async (productId) => {
+    try {
+      const res = await MercatodoServer.getProduct(productId);
+      const data = await res.json();
+
+      const {
+        pro_name,
+        pro_provider,
+        pro_existences,
+        pro_date,
+        pro_description,
+        pro_category,
+      } = data.product;
+      setProduct({
+        name: pro_name,
+        proveedor: pro_provider,
+        cantidad: pro_existences,
+        date: pro_date.slice(0, -1),
+        descripcion: pro_description,
+        categoria: pro_category,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getProduct(id);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
       <Nav />
       <div class="container mt-5 mb-5">
-        <p class="d-flex justify-content-center font-weight-bold h4">
+      {
+        id ? (
+          <p class="d-flex justify-content-center font-weight-bold h4">
+          Editar Producto
+        </p>
+        ) : (
+          <p class="d-flex justify-content-center font-weight-bold h4">
           Agregar Producto
         </p>
+      )}
+        
         <div class="row d-flex justify-content-center mt-4">
           <div class="col-sm-6">
             <form onSubmit={handleSubmit}>
@@ -100,7 +156,12 @@ export const Agregar = () => {
               </div>
               <div class="mb-4">
                 <label class="form-label">Categoria</label>
-                <select class="form-control" name="categoria" onChange={handleInputChange} value={product.categoria}>
+                <select
+                  class="form-control"
+                  name="categoria"
+                  onChange={handleInputChange}
+                  value={product.categoria}
+                >
                   <option value="1">Cárnicos</option>
                   <option value="2">Lácteos</option>
                   <option value="3">Embutidos</option>
@@ -114,7 +175,12 @@ export const Agregar = () => {
                   <option value="11">Aseo personal</option>
                 </select>
               </div>
-              <button class="btn btn-primary">Agregar</button>
+              {id ? (
+                <button type="submit" class="btn btn-primary">Editar</button>
+              ) : (
+                <button type="submit" class="btn btn-primary">Agregar</button>
+              )}
+              
               <Link to="/products">
                 <button class="btn btn-danger ml-3">Cancelar</button>
               </Link>

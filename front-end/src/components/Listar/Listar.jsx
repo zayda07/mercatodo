@@ -15,7 +15,6 @@ export const Listar = () => {
     try {
       const res = await MercatodoServer.listProducts();
       const data = await res.json();
-      console.log(data)
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -25,6 +24,11 @@ export const Listar = () => {
   useEffect(() => {
     listProducts();
   }, []);
+
+  const handleDelete = async (productId) => {
+    await MercatodoServer.deleteProduct(productId)
+    listProducts();
+  };
 
   return (
     <>
@@ -59,7 +63,7 @@ export const Listar = () => {
                   <td data-label="Nombre del producto">{product.pro_name}</td>
                   <td data-label="Proveedor">{product.pro_provider}</td>
                   <td data-label="Cantidad">{product.pro_existences}</td>
-                  <td data-label="Fecha llegada">{product.pro_date}</td>
+                  <td data-label="Fecha llegada">{product.pro_date.replace("T"," ").slice(0,-1)}</td>
                   <td data-label="Descripción">{product.pro_description}</td>
                   <td data-label="Categoria">{product.pro_category}</td>
                   <td>
@@ -70,7 +74,7 @@ export const Listar = () => {
                     </Link>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-danger">
+                    <button onClick={() => product.id && handleDelete(product.id)} type="button" class="btn btn-danger">
                       <BiTrash />
                     </button>
                   </td>
