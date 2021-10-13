@@ -6,7 +6,7 @@ import { BiLockAlt } from "react-icons/bi";
 
 export const Login = () => {
     return (
-        <div className={styles.prueba}>
+        <div className={styles.background}>
             <div className={styles.section}>
                 <img src={logo} alt="MercaTodo" />
                 <p className={styles.merca}>
@@ -38,6 +38,7 @@ export const Login = () => {
                             <BiLockAlt size="20" /> Contraseña
                         </label>
                     </div>
+
                     <button type="submit" className={styles.btnSignIn}>
                         Iniciar Sesión
                     </button>

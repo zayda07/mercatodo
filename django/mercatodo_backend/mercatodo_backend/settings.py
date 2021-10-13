@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-jx-)e_&soizez$p$l&o5qwjtl6#an&j#6hoo6=xa-l7vg21ee&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0'] 
 
 
 # Application definition
@@ -77,11 +76,11 @@ WSGI_APPLICATION = 'mercatodo_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'localhost',
+        'HOST':'b5nh9hhqmo9os4dzmgvl-mysql.services.clever-cloud.com',
         'PORT':'3306',
-        'USER':'root',
-        'PASSWORD':'carolina',
-        'NAME':'mercatodo_db',
+        'USER':'ua7htk2yxowriwjq',
+        'PASSWORD':'IrDUa495UXkvJhCsjWhr',
+        'NAME':'b5nh9hhqmo9os4dzmgvl',
         'OPTIONS': {'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"}
     }
 }
