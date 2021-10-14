@@ -6,9 +6,45 @@ import { BiPlus } from "react-icons/bi";
 import { BiTrash } from "react-icons/bi";
 import { BiPencil } from "react-icons/bi";
 import { Link } from "react-router-dom";
-
+import Search from "../Search/Search";
 export const Listar = () => {
+    const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
+
+    const handleChange = (items) => {
+        if (items.target.value) {
+            const result = products.filter((item) => {
+                if (
+                    item.pro_name
+                        .toLocaleLowerCase()
+                        .includes(items.target.value.toLocaleLowerCase()) ||
+                    item.pro_provider
+                        .toLocaleLowerCase()
+                        .includes(items.target.value.toLocaleLowerCase()) ||
+                    item.pro_description
+                        .toLocaleLowerCase()
+                        .includes(items.target.value.toLocaleLowerCase()) ||
+                    item.pro_category
+                        .toLocaleLowerCase()
+                        .includes(items.target.value.toLocaleLowerCase()) ||
+                    item.pro_existences
+                        .toString()
+                        .includes(items.target.value.toString()) ||
+                    item.pro_date
+                        .toString()
+                        .includes(items.target.value.toString())
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            setProducts(result);
+        } else {
+            setProducts(products);
+        }
+        setSearch(items.target.value);
+    };
 
     const listProducts = async () => {
         try {
@@ -39,7 +75,7 @@ export const Listar = () => {
                         Agregar <BiPlus />
                     </button>
                 </Link>
-
+                <Search handleChange={handleChange} search={search} />
                 <div class="table-responsive mt-4">
                     <table class="table">
                         <thead>

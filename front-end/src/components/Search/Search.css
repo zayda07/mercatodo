@@ -1,0 +1,21 @@
+.searchSection {
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.searchSection input {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 50px;
+    color: #000000;
+    font-size: 14px;
+    padding: 10px 15px;
+    width: 50%;
+}
+
+.searchSection input:focus {
+    outline: none;
+}
