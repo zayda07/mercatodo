@@ -1,5 +1,6 @@
 import "./App.css";
-import { Listar } from "./components/Listar/Listar";
+// import { Listar } from "./components/Listar/Listar";
+import { ListarGeneral } from "./components/Listar/ListarGeneral";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { Login } from "./components/Login/Login";
 import { Agregar } from "./components/Agregar/Agregar";
@@ -15,7 +16,8 @@ function App() {
             <Agregar />
           </Route>
           <Route path="/products">
-            <Listar />
+            {/* <Listar /> */}
+            <ListarGeneral/>
           </Route>
           <Route path="/">
             <Login />

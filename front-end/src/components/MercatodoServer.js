@@ -1,11 +1,29 @@
-const API_URL = "http://127.0.0.1:8000/api/products/";
+const API_URL = "https://floating-beach-39441.herokuapp.com/api/products/";
+const API_LOGGIN = "https://floating-beach-39441.herokuapp.com/api/users/";
+
 
 export const listProducts = async () => {
   return await fetch(API_URL);
 };
 
+export const listUser = async () => {
+  return await fetch(API_LOGGIN);
+};
+
 export const getProduct = async (productId) => {
     return await fetch(`${API_URL}${productId}`);
+};
+
+
+
+export const User = async (username) => {
+  console.log(username)
+    return await fetch(API_LOGGIN, {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        credentials: 'include',
+        body: JSON.stringify(username),
+      });
 };
 
 export const registerProduct = async (newProduct) => {
