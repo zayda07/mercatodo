@@ -1,3 +1,4 @@
+import os
 """
 Django settings for mercatodo_backend project.
 
@@ -24,7 +25,7 @@ SECRET_KEY = 'django-insecure-jx-)e_&soizez$p$l&o5qwjtl6#an&j#6hoo6=xa-l7vg21ee&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['floating-beach-39441.herokuapp.com','127.0.0.1'] 
 
 
 # Application definition
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'api'
+    'api',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+]
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3030',
+] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    'http://localhost:3030',
 ]
 
 CORS_ORIGIN_WHITELIST = (
@@ -82,11 +92,11 @@ WSGI_APPLICATION = 'mercatodo_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'localhost',
+        'HOST':'bqpkxfysvdqpjnzhrv8x-mysql.services.clever-cloud.com',
         'PORT':'3306',
-        'USER':'root',
-        'PASSWORD':'1234',
-        'NAME':'mercatodo_db',
+        'USER':'uyiojl3lismpfyuh',
+        'PASSWORD':'ymgvuZ6ibOgjqVAg5GdW',
+        'NAME':'bqpkxfysvdqpjnzhrv8x',
         'OPTIONS': {'init_command':"SET sql_mode='STRICT_TRANS_TABLES'"}
     }
 }
@@ -129,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
