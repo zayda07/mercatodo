@@ -7,6 +7,8 @@ import { BiTrash } from "react-icons/bi";
 import { BiPencil } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import Filter from "../Filter/Filter";
+
 export const Listar = () => {
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
@@ -76,6 +78,9 @@ export const Listar = () => {
                     </button>
                 </Link>
                 <Search handleChange={handleChange} search={search} />
+                <div className="">
+                    <select className="form"></select>
+                </div>
                 <div class="table-responsive mt-4">
                     <table class="table">
                         <thead>

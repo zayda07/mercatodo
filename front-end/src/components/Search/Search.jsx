@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
 
-const Search = ({ handleChange, searchTitle }) => {
+const Search = ({ handleChange, search }) => {
     return (
         <div className="searchSection" id="search">
             <input
@@ -9,7 +9,7 @@ const Search = ({ handleChange, searchTitle }) => {
                 id="filter"
                 placeholder="Search......."
                 onChange={handleChange}
-                value={searchTitle}
+                value={search}
             />
         </div>
     );

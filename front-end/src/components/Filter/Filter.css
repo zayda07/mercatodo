@@ -1,0 +1,21 @@
+.filterSection {
+    width: 40%;
+    height: 80px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filterSection input {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-radius: 50px;
+    color: #000000;
+    font-size: 14px;
+    padding: 10px 15px;
+    width: 50%;
+}
+
+.filterSection input:focus {
+    outline: none;
+}
